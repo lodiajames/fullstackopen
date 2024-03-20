@@ -29,12 +29,22 @@ const vote = () =>{
   
   
  }
+ const maxCountAnecdote = anex.reduce((maxAnecdote, currentAnecdote) => {
+  return currentAnecdote.count > maxAnecdote.count ? currentAnecdote : maxAnecdote;
+}, anex[0]);
+
+
   return (
     <div>
+      <h1>Anectode of the day</h1>
       <p>{anex[selected]['text']} has <strong>{anex[selected].count}</strong> {anex[selected].count>0 ?"votes": "vote"}</p>
       
       <button onClick={()=>vote()}>vote</button>
       <button onClick={randomAnecdotes}>next anecdote</button>
+      <div>
+        <h2>Anecdote with most votes</h2>
+        <p>{maxCountAnecdote.text} has <strong>{maxCountAnecdote.count}</strong> votes</p>
+      </div>
     </div>
   )
   }
