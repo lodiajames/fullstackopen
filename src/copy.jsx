@@ -10,32 +10,29 @@ const anecdotes = [
   'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
   'The only way to go fast, is to go well.'
 ]
+
 const App = () => {
-   const [anex, setAnex] = useState(anecdotes.map(anecdote=>({text:anecdote, count:0})))
-  
+   const [anex, setAnex] = useState(anecdotes.map(anecdote => ({ text: anecdote, count: 0 })))
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState(0)
- 
-const vote = () =>{
-  const updatedAnex= [...anex]
-  updatedAnex[selected].count +=1
+
+ const vote = () => {
+  const updatedAnex = [...anex]
+  updatedAnex[selected].count += 1
   setAnex(updatedAnex)
-}
-
-
- const randomAnecdotes= ()=>{
-  const num = Math.floor(Math.random() * anecdotes.length)
-   setSelected(num)
-  
-  
  }
-  return (
+
+ const randomAnecdote = () => {
+  const num = Math.floor(Math.random() * anecdotes.length)
+  setSelected(num)
+ }
+ 
+ return (
     <div>
-      <p>{anex[selected]['text']} has <strong>{anex[selected].count}</strong> {anex[selected].count>0 ?"votes": "vote"}</p>
-      
-      <button onClick={()=>vote()}>vote</button>
-      <button onClick={randomAnecdotes}>next anecdote</button>
+      <p>{anex[selected].text} has {anex[selected].count} votes</p>
+      <button onClick={vote}>Vote</button>
+      <button onClick={randomAnecdote}>Next Anecdote</button>
     </div>
   )
-  }
+}
+
 export default App
